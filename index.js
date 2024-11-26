@@ -3,8 +3,8 @@ const TelegramBot = require("node-telegram-bot-api");
 require("dotenv").config(); // dotenv 라이브리를 설치하면 .config함수를 사용할 수 있고, process.env 객체에 .env 파일에 적힌 내용들이 추가됨. .env 파일이 없으면 config()를 실행해도 아무일 안일어남
 const { google } = require("googleapis");
 const app = express();
-const TOKEN = process.env.TOKEN;
-const CRED = process.env.CRED;
+// const TOKEN = process.env.TOKEN;
+// const CRED = process.env.CRED;
 const bot = new TelegramBot(TOKEN, { polling: true }); // 새로운 메세지가 있는지 주기적으로 알려주는 옵션
 
 //
