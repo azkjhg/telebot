@@ -5,8 +5,11 @@ const { google } = require("googleapis");
 const app = express();
 const TOKEN = process.env.TOKEN;
 const CRED = process.env.CRED;
+const GCRED = process.env.GCRED;
 const bot = new TelegramBot(TOKEN, { polling: true }); // 새로운 메세지가 있는지 주기적으로 알려주는 옵션
-
+//
+//  * 금천 시트에서 내 개인 시트로 바꿀 때, '금천' , '개인' 으로 검색해서 나오는 부분 다 변경하기
+//  * 클라우드타입에 시크릿 JSON 은 `` 안 넣고, .env JSON은 `` 넣어야함
 //
 let chat_id_error;
 bot.on("message", async (message) => {
@@ -14,7 +17,8 @@ bot.on("message", async (message) => {
     try {
     } catch (error) {}
     const auth = new google.auth.GoogleAuth({
-      credentials: JSON.parse(CRED), // CRED가 vscode 상에서는 .env에서  `` 이걸 써줘야하는데, 클라우드타입에서는 ``을 빼고 {} 그냥 json 객체형태로만 넣어주니까 된다...
+      credentials: JSON.parse(CRED), // 내 개인 시트// CRED가 vscode 상에서는 .env에서  `` 이걸 써줘야하는데, 클라우드타입에서는 ``을 빼고 {} 그냥 json 객체형태로만 넣어주니까 된다...
+      // credentials: JSON.parse(GCRED), //금천시트
       scopes: "https://www.googleapis.com/auth/spreadsheets",
     });
     const client = await auth.getClient(); // auth를 수행한 뒤 제공되는 객체
