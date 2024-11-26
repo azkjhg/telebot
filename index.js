@@ -10,14 +10,11 @@ const bot = new TelegramBot(TOKEN, { polling: true }); // 새로운 메세지가
 //
 let chat_id_error;
 bot.on("message", async (message) => {
-  console.log("TOKEN", TOKEN);
-  console.log("CRED", CRED && JSON.parse(CRED));
-  console.log("message", message);
   try {
     try {
     } catch (error) {}
     const auth = new google.auth.GoogleAuth({
-      credentials: JSON.parse(CRED),
+      credentials: JSON.parse(CRED), // CRED가 vscode 상에서는 .env에서  `` 이걸 써줘야하는데, 클라우드타입에서는 ``을 빼고 {} 그냥 json 객체형태로만 넣어주니까 된다...
       scopes: "https://www.googleapis.com/auth/spreadsheets",
     });
     const client = await auth.getClient(); // auth를 수행한 뒤 제공되는 객체
