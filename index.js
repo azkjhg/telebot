@@ -10,8 +10,9 @@ const bot = new TelegramBot(TOKEN, { polling: true }); // 새로운 메세지가
 //
 let chat_id_error;
 bot.on("message", async (message) => {
-  console.log("CRED", TOKEN);
-  console.log("CRED", CRED);
+  console.log("TOKEN", TOKEN);
+  console.log("CRED", JSON.parse(CRED));
+  console.log("message", message);
   try {
     try {
     } catch (error) {}
