@@ -13,6 +13,7 @@ const bot = new TelegramBot(TOKEN, { polling: true }); // 새로운 메세지가
 //
 let chat_id_error;
 bot.on("message", async (message) => {
+  // 왜 포트 설정을 안 하고 배포해도 작동하는지 정확히는 모르겠지만, 봇에서 메세지를 보내면, 텔레그램 서버로 전송되고, bot.on은 그 데이터를 가져와서 데이터 처리를 하는 방식 같은데, 제미니는 그게 아니라고 하는데 모르겠다..
   try {
     try {
     } catch (error) {}
