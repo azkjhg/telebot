@@ -275,7 +275,15 @@ bot.on("message", async (message) => {
                   matches[1], // 월
                   matches[2], // 일
                 ];
+                function getYear() {
+                  const now = new Date();
+                  const year = now.getFullYear();
+                  return year;
+                }
                 console.log("DateParse:", DateParse); // ["41", "11", "26"]
+                const PlayDate = `${getYear()}. ${DateParse?.[0]}. ${
+                  DateParse?.[1]
+                }`;
 
                 const regexSearch = /.*찾기활동자수.*/;
                 const regexSearch2 = /.*성따.*/;
@@ -301,9 +309,104 @@ bot.on("message", async (message) => {
                 console.log("PrevSlicedPlay:", PrevSlicedPlay);
                 const SlicedPlay = PrevSlicedPlay.filter((item) => item !== "");
                 console.log("SlicedPlay:", SlicedPlay);
+                const PlayNamesData = [];
+                const PlayNames = [];
+                let CurrentRow = nextRow;
+                SlicedPlay.forEach((line) => {
+                  const regexName = /\(.*\)/;
+                  const matches = line.match(regexName);
+                  if (matches) {
+                    // 괄호 제거
+                    const trimmedMatches = matches[0].replace(/\(|\)/g, "");
+
+                    // 띄어쓰기를 기준으로 분리
+                    const trimmedNames = trimmedMatches.split(" ");
+                    console.log("trimmedNames:", trimmedNames);
+                    trimmedNames.forEach((name) => {
+                      const Ary = [
+                        `=iferror(XLOOKUP($C${CurrentRow},importrange("1eK9A_ZfGRAPfyx2wA-xmLWyMied9qISfA6lcWgrFWtk","'지역명단'!$C:$C"),importrange("1eK9A_ZfGRAPfyx2wA-xmLWyMied9qISfA6lcWgrFWtk","'지역명단'!$A:$A"))," ")`,
+                        `=iferror(XLOOKUP($C${CurrentRow},importrange("1eK9A_ZfGRAPfyx2wA-xmLWyMied9qISfA6lcWgrFWtk","'지역명단'!$C:$C"),importrange("1eK9A_ZfGRAPfyx2wA-xmLWyMied9qISfA6lcWgrFWtk","'지역명단'!$B:$B"))," ")`,
+                        name,
+                        PlayDate,
+                      ];
+                      PlayNames.push(name);
+                      PlayNamesData.push(Ary);
+                      CurrentRow++;
+                    });
+                  }
+                });
+                console.log("PlayNamesData:", PlayNamesData);
+                console.log("PlayNames:", PlayNames);
+                console.log("PlayDate", PlayDate);
+                const result = {
+                  PlayDate,
+                  PlayNames,
+                  PlayNamesData,
+                };
+                console.log("result:", result);
+                return result; // 일일 데이터
               }
               ////////////////////////////////
               const ParseResult = ParseDataDay(data);
+
+              const case1 = typeof Number(ParseResult?.PlayDate) === "number";
+              const case2 = typeof ParseResult?.PlayNames[0] === "string"; // 웬만하면 이거 만족할 듯
+
+              ////////////////////////////////////////////////////////////////
+              let OK = true;
+              let Message = "등록되지 않았습니다.";
+
+              if (!case1) {
+                OK = false;
+                Message = "날짜가 잘못되었습니다.";
+              } else if (!case2) {
+                OK = false;
+                Message = "이름이 잘못되었습니다.";
+              } else if (nextRow == 2) {
+                OK = false;
+                Message = "첫행에 데이터를 수기로 입력한 후 재시도 하세요.";
+              }
+
+              if (OK) {
+                await googleSheets.spreadsheets.values.append({
+                  auth,
+                  spreadsheetId,
+                  range: range,
+                  valueInputOption: "USER_ENTERED",
+                  insertDataOption: "INSERT_ROWS",
+                  resource: {
+                    values: ParseResult.PlayNamesData,
+                  },
+                });
+                // return result response 객체를 나타내는 것 같은데, 리턴할 필요없음
+                // 첫행에 데이터 없는 경우
+
+                await bot.sendMessage(
+                  chat_id,
+                  `${ParseResult.PlayDate} 일자\n\n"${ParseResult.PlayNames}"\n\n 일일활동자 ${ParseResult.PlayNames.length}건이 등록되었습니다!🙏`,
+                  {
+                    ////////////////////////////////////////////////////////////////
+
+                    message_thread_id: 107,
+                  }
+                );
+              } else {
+                await bot.sendMessage(chat_id, Message, {
+                  ////////////////////////////////////////////////////////////////
+
+                  message_thread_id: 107,
+                });
+              }
+            } else {
+              await bot.sendMessage(
+                chat_id,
+                "첫째줄에는 /일일 만 작성해주세요.",
+                {
+                  ////////////////////////////////////////////////////////////////
+
+                  message_thread_id: 107,
+                }
+              );
             }
             break;
           // 다른 시트를 추가할 때 권한 얻으려면, 인증된 메일 주소를 시트 공유 버튼 눌러서 입력하면 됨. telebot@telebot-441511.iam.gserviceaccount.com 이거
