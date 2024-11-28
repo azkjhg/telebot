@@ -19,8 +19,8 @@ bot.on("message", async (message) => {
   // console.log("message: ", message);
   try {
     const auth = new google.auth.GoogleAuth({
-      credentials: JSON.parse(CRED), // 내 개인 시트// CRED가 vscode 상에서는 .env에서  `` 이걸 써줘야하는데, 클라우드타입에서는 ``을 빼고 {} 그냥 json 객체형태로만 넣어주니까 된다...
-      // credentials: JSON.parse(GCRED), //금천시트
+      // credentials: JSON.parse(CRED), // 내 개인 시트// CRED가 vscode 상에서는 .env에서  `` 이걸 써줘야하는데, 클라우드타입에서는 ``을 빼고 {} 그냥 json 객체형태로만 넣어주니까 된다...
+      credentials: JSON.parse(GCRED), //금천시트
       scopes: "https://www.googleapis.com/auth/spreadsheets",
     });
     const client = await auth.getClient(); // auth를 수행한 뒤 제공되는 객체
@@ -41,21 +41,22 @@ bot.on("message", async (message) => {
             if (regex.test(firstLine)) {
               const data = message.text; //수신된 메세지
               ////////////////////////////////
+              // const spreadsheetId =
+              //   "1ZJRPB7DWaoYaWwGvLbx6g8_9UGtUfIOFbC3ICIlNJEU"; // 내개인
               const spreadsheetId =
-                "1ZJRPB7DWaoYaWwGvLbx6g8_9UGtUfIOFbC3ICIlNJEU"; // 내개인
-              // const spreadsheetId = "1eK9A_ZfGRAPfyx2wA-xmLWyMied9qISfA6lcWgrFWtk"; // 금천시트
+                "1eK9A_ZfGRAPfyx2wA-xmLWyMied9qISfA6lcWgrFWtk"; // 금천시트
               const response = await googleSheets.spreadsheets.values.get({
                 auth,
                 spreadsheetId,
-                range: "시트1!C:C", // 내개인
-                // range: "섭외자관리!C:C", // 금천시트
+                // range: "시트1!C:C", // 내개인
+                range: "섭외자관리!C:C", // 금천시트
               }); //시트 C:C 에서 마지막 행이 몇번째 행인지 찾는 함수
               const values = response.data.values;
               const nextRow = values ? values.length + 1 : 1; // 마지막 행 다음 행을 찾음. 만약 값이 없으면 1행부터 시작
               // 범위 지정
               console.log("nextRow:", nextRow);
-              const range = `시트1!A${nextRow}`; //내 개인
-              // const range = `섭외자관리!A${nextRow}`; //금천시트
+              // const range = `시트1!A${nextRow}`; //내 개인
+              const range = `섭외자관리!A${nextRow}`; //금천시트
               ////////////////////////////////
               function ParseData(data) {
                 const lines = data.split("\n");
@@ -244,14 +245,12 @@ bot.on("message", async (message) => {
                 auth,
                 spreadsheetId,
                 range: "활동자!C:C", // 내개인
-                // range: "섭외자관리!C:C", // 금천시트
               }); //시트 C:C 에서 마지막 행이 몇번째 행인지 찾는 함수
               const values = response.data.values;
               const nextRow = values ? values.length + 1 : 1; // 마지막 행 다음 행을 찾음. 만약 값이 없으면 1행부터 시작
               // 범위 지정
               console.log("nextRow:", nextRow);
               const range = `활동자!A${nextRow}`; //내 개인
-              // const range = `섭외자관리!A${nextRow}`; //금천시트
 
               ////////////////////////////////////////////////////////////////////////
               function ParseDataDay(data) {
