@@ -25,12 +25,11 @@ bot.on("message", async (message) => {
     switch (chat_id) {
       // case -1002448267848: //내 개인 텔레방 id
       case -1002381375474: //금천 텔레방 id
-        const firstLine = message.text.split("\n")[0];
-
         // if (thread == 104) {
         //104 104는 내 개인 만픽창
         if (thread == 5) {
           // 5는 금천 만픽창
+          const firstLine = message.text.split("\n")[0];
 
           const auth = new google.auth.GoogleAuth({
             // credentials: JSON.parse(CRED), // 내 개인 시트// CRED가 vscode 상에서는 .env에서  `` 이걸 써줘야하는데, 클라우드타입에서는 ``을 빼고 {} 그냥 json 객체형태로만 넣어주니까 된다...
@@ -239,6 +238,7 @@ bot.on("message", async (message) => {
           //107은 내 개인 일일창
         } else if (thread == 12) {
           // 12는 금천 일일창
+          const firstLine = message.text.split("\n")[0];
 
           const auth = new google.auth.GoogleAuth({
             credentials: JSON.parse(CRED), // 내 개인 시트// CRED가 vscode 상에서는 .env에서  `` 이걸 써줘야하는데, 클라우드타입에서는 ``을 빼고 {} 그냥 json 객체형태로만 넣어주니까 된다...
