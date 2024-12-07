@@ -241,7 +241,8 @@ bot.on("message", async (message) => {
           const firstLine = message.text.split("\n")[0];
 
           const auth = new google.auth.GoogleAuth({
-            credentials: JSON.parse(CRED), // 내 개인 시트// CRED가 vscode 상에서는 .env에서  `` 이걸 써줘야하는데, 클라우드타입에서는 ``을 빼고 {} 그냥 json 객체형태로만 넣어주니까 된다...
+            //credentials: JSON.parse(CRED), // 내 개인 시트// CRED가 vscode 상에서는 .env에서  `` 이걸 써줘야하는데, 클라우드타입에서는 ``을 빼고 {} 그냥 json 객체형태로만 넣어주니까 된다...
+            credentials: JSON.parse(GCRED),
             scopes: "https://www.googleapis.com/auth/spreadsheets",
           });
           const client = await auth.getClient(); // auth를 수행한 뒤 제공되는 객체
@@ -253,8 +254,10 @@ bot.on("message", async (message) => {
           if (regexday.test(firstLine)) {
             const data = message.text;
             console.log("data:", data);
+            // const spreadsheetId =
+            //   "1A24Sgr4RkHpHW73y_WTZQO-A1kve_6ldnZhiEh3pk1I"; // 내 개인 일일 활동자 창
             const spreadsheetId =
-              "1A24Sgr4RkHpHW73y_WTZQO-A1kve_6ldnZhiEh3pk1I"; // 내 개인 일일 활동자 창
+              "1NPudEATYzqdZoeotsqXvc67xX-FyJBx0xAAC4BPnRIE"; // 금천 계정 일일 활동자 창
             const response = await googleSheets.spreadsheets.values.get({
               auth,
               spreadsheetId,
