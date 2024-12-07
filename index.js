@@ -394,15 +394,15 @@ bot.on("message", async (message) => {
               // return result response 객체를 나타내는 것 같은데, 리턴할 필요없음
               // 첫행에 데이터 없는 경우
 
-              await bot.sendMessage(
-                chat_id,
-                `${ParseResult.PlayDate} 일자\n\n"${ParseResult.PlayNames}"\n\n 일일활동자 ${ParseResult.PlayNames.length}건이 등록되었습니다!🙏`,
-                {
-                  ////////////////////////////////////////////////////////////////
+              // await bot.sendMessage(
+              //   chat_id,
+              //   `${ParseResult.PlayDate} 일자\n\n"${ParseResult.PlayNames}"\n\n 일일활동자 ${ParseResult.PlayNames.length}건이 등록되었습니다!🙏`,
+              //   {
+              //     ////////////////////////////////////////////////////////////////
 
-                  message_thread_id: thread,
-                }
-              );
+              //     message_thread_id: thread,
+              //   }
+              // );
             } else {
               await bot.sendMessage(chat_id, Message, {
                 ////////////////////////////////////////////////////////////////
