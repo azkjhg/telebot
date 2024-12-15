@@ -333,7 +333,9 @@ bot.on("message", async (message) => {
                   const trimmedMatches = matches[0].replace(/\(|\)/g, "");
 
                   // 띄어쓰기를 기준으로 분리
-                  const trimmedNames = trimmedMatches.split(" ");
+                  const trimmedNames = trimmedMatches
+                    .split(" ")
+                    .filter((word) => word !== "");
                   console.log("trimmedNames:", trimmedNames);
                   trimmedNames.forEach((name) => {
                     const Ary = [
