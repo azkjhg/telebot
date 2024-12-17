@@ -322,41 +322,47 @@ bot.on("message", async (message) => {
               console.log("PrevSlicedPlay:", PrevSlicedPlay);
               const SlicedPlay = PrevSlicedPlay.filter((item) => item !== "");
               console.log("SlicedPlay:", SlicedPlay);
-              const PlayNamesData = [];
-              const PlayNames = [];
-              let CurrentRow = nextRow;
-              SlicedPlay.forEach((line) => {
-                const regexName = /\(.*\)/;
-                const matches = line.match(regexName);
-                if (matches) {
-                  // 괄호 제거
-                  const trimmedMatches = matches[0].replace(/\(|\)/g, "");
 
-                  // 띄어쓰기를 기준으로 분리
-                  const trimmedNames = trimmedMatches
-                    .split(" ")
-                    .filter((word) => word !== "");
-                  console.log("trimmedNames:", trimmedNames);
-                  trimmedNames.forEach((name) => {
-                    const Ary = [
-                      `=iferror(XLOOKUP($C${CurrentRow},importrange("1eK9A_ZfGRAPfyx2wA-xmLWyMied9qISfA6lcWgrFWtk","'지역명단'!$C:$C"),importrange("1eK9A_ZfGRAPfyx2wA-xmLWyMied9qISfA6lcWgrFWtk","'지역명단'!$A:$A"))," ")`,
-                      `=iferror(XLOOKUP($C${CurrentRow},importrange("1eK9A_ZfGRAPfyx2wA-xmLWyMied9qISfA6lcWgrFWtk","'지역명단'!$C:$C"),importrange("1eK9A_ZfGRAPfyx2wA-xmLWyMied9qISfA6lcWgrFWtk","'지역명단'!$B:$B"))," ")`,
-                      name,
-                      PlayDate,
-                    ];
-                    PlayNames.push(name);
-                    PlayNamesData.push(Ary);
-                    CurrentRow++;
-                  });
-                }
+              const PlayNumAry = [];
+
+              // SlicedPlay: [
+              //   '1/3(테스트 테스트 테스트)',
+              //   '2/',
+              //   '3/1(테스트)',
+              //   '4/2(테스트 테스트)',
+              //   '5/',
+              //   '6/',
+              //   '7/'
+              // ]
+
+              SlicedPlay.forEach((line) => {
+                const [firstNum, secondNumStr] = line.split("/");
+                const secondNum = isNaN(parseInt(secondNumStr))
+                  ? 0
+                  : parseInt(secondNumStr); // 문자열을 숫자로 변환
+                // firstNum: 1, secondNum: 2 , 1구역의 활동자수 2명 이런식으로..
+                console.log(
+                  "firstNum, secondNum, PlayDate:",
+                  firstNum,
+                  secondNum,
+                  PlayDate
+                );
+                PlayNum = [parseInt(firstNum), secondNum, PlayDate];
+                PlayNumAry.push(PlayNum);
               });
-              console.log("PlayNamesData:", PlayNamesData);
-              console.log("PlayNames:", PlayNames);
-              console.log("PlayDate", PlayDate);
+              console.log("PlayNumAry:", PlayNumAry);
+
+              let ResultMessage = "";
+              PlayNumAry.forEach((item) => {
+                Msg = `${item[0]}구역 : ${item[1]}명\n`;
+                ResultMessage += Msg;
+                console.log("ResultMessage:", ResultMessage);
+              });
+
               const result = {
+                PlayNumAry,
                 PlayDate,
-                PlayNames,
-                PlayNamesData,
+                ResultMessage,
               };
               console.log("result:", result);
               return result; // 일일 데이터
@@ -365,7 +371,7 @@ bot.on("message", async (message) => {
             const ParseResult = ParseDataDay(data);
 
             const case1 = typeof Number(ParseResult?.PlayDate) === "number";
-            const case2 = typeof ParseResult?.PlayNames[0] === "string"; // 웬만하면 이거 만족할 듯
+            const case2 = typeof ParseResult?.PlayNumAry[0][0] === "number"; // 웬만하면 이거 만족할 듯
 
             ////////////////////////////////////////////////////////////////
             let OK = true;
@@ -376,7 +382,7 @@ bot.on("message", async (message) => {
               Message = "날짜가 잘못되었습니다.";
             } else if (!case2) {
               OK = false;
-              Message = "이름이 잘못되었습니다.";
+              Message = "구역과 활동자수가 잘못되었습니다.";
             } else if (nextRow == 2) {
               OK = false;
               Message = "첫행에 데이터를 수기로 입력한 후 재시도 하세요.";
@@ -390,7 +396,7 @@ bot.on("message", async (message) => {
                 valueInputOption: "USER_ENTERED",
                 insertDataOption: "INSERT_ROWS",
                 resource: {
-                  values: ParseResult.PlayNamesData,
+                  values: ParseResult.PlayNumAry,
                 },
               });
               // return result response 객체를 나타내는 것 같은데, 리턴할 필요없음
@@ -398,7 +404,7 @@ bot.on("message", async (message) => {
 
               await bot.sendMessage(
                 chat_id,
-                `${ParseResult.PlayDate} 일자\n\n"${ParseResult.PlayNames}"\n\n 일일활동자 ${ParseResult.PlayNames.length}건이 등록되었습니다!🙏`,
+                `${ParseResult.PlayDate} 일자\n\n${ParseResult.ResultMessage}\n일일활동자 수가 등록되었습니다!🙏`,
                 {
                   ////////////////////////////////////////////////////////////////
 
