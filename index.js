@@ -343,11 +343,11 @@ bot.on("message", async (message) => {
                 // firstNum: 1, secondNum: 2 , 1구역의 활동자수 2명 이런식으로..
                 console.log(
                   "firstNum, secondNum, PlayDate:",
+                  PlayDate,
                   firstNum,
-                  secondNum,
-                  PlayDate
+                  secondNum
                 );
-                PlayNum = [parseInt(firstNum), secondNum, PlayDate];
+                PlayNum = [PlayDate, parseInt(firstNum), secondNum];
                 PlayNumAry.push(PlayNum);
               });
               console.log("PlayNumAry:", PlayNumAry);
@@ -371,7 +371,7 @@ bot.on("message", async (message) => {
             const ParseResult = ParseDataDay(data);
 
             const case1 = typeof Number(ParseResult?.PlayDate) === "number";
-            const case2 = typeof ParseResult?.PlayNumAry[0][0] === "number"; // 웬만하면 이거 만족할 듯
+            const case2 = typeof ParseResult?.PlayNumAry[0][1] === "number"; // 웬만하면 이거 만족할 듯
 
             ////////////////////////////////////////////////////////////////
             let OK = true;
