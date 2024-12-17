@@ -354,7 +354,7 @@ bot.on("message", async (message) => {
 
               let ResultMessage = "";
               PlayNumAry.forEach((item) => {
-                Msg = `${item[0]}구역 : ${item[1]}명\n`;
+                Msg = `${item[1]}구역 : ${item[2]}명\n`;
                 ResultMessage += Msg;
                 console.log("ResultMessage:", ResultMessage);
               });
