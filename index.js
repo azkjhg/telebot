@@ -3,6 +3,7 @@ const TelegramBot = require("node-telegram-bot-api");
 require("dotenv").config(); // dotenv 라이브리를 설치하면 .config함수를 사용할 수 있고, process.env 객체에 .env 파일에 적힌 내용들이 추가됨. .env 파일이 없으면 config()를 실행해도 아무일 안일어남
 const { google } = require("googleapis");
 const app = express();
+const schedule = require("node-schedule");
 
 const TOKEN = process.env.TOKEN;
 const CRED = process.env.CRED;
@@ -19,6 +20,7 @@ bot.on("message", async (message) => {
   // console.log("message: ", message);
   try {
     const chat_id = message.chat.id; // 채팅방 아이디
+    console.log("chat_id:", chat_id);
     chat_id_error = chat_id;
     const thread = message.reply_to_message?.message_thread_id;
     chat_thread_error = thread; // 주제, 즉 쓰레드
@@ -443,6 +445,30 @@ bot.on("message", async (message) => {
       }
     );
   }
+});
+
+const job11 = schedule.scheduleJob("0 9 * * *", () => {
+  bot.sendMessage(-1002056368988, "더 올리실 내용 있으실까요?");
+});
+
+const job12 = schedule.scheduleJob("30 9 * * *", () => {
+  bot.sendMessage(-1002056368988, "마감하겠습니다.");
+});
+
+const job13 = schedule.scheduleJob("20 11 * * *", () => {
+  bot.sendMessage(-1002056368988, "일일보고 마감 10분 전 입니다");
+});
+
+const job21 = schedule.scheduleJob("0 9 * * *", () => {
+  bot.sendMessage(-1001605704969, "더 올리실 내용 있으실까요?");
+});
+
+const job22 = schedule.scheduleJob("30 9 * * *", () => {
+  bot.sendMessage(-1001605704969, "마감하겠습니다.");
+});
+
+const job23 = schedule.scheduleJob("20 11 * * *", () => {
+  bot.sendMessage(-1001605704969, "일일보고 마감 10분 전 입니다");
 });
 
 // app.listen(1337, (req, res) => console.log("listening on 1337"));
