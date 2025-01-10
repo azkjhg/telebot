@@ -455,7 +455,7 @@ const job12 = schedule.scheduleJob("30 9 * * *", () => {
   bot.sendMessage(-1002056368988, "마감하겠습니다.");
 });
 
-const job13 = schedule.scheduleJob("20 11 * * *", () => {
+const job13 = schedule.scheduleJob("20 23 * * *", () => {
   bot.sendMessage(-1002056368988, "일일보고 마감 10분 전 입니다");
 });
 
@@ -467,7 +467,7 @@ const job22 = schedule.scheduleJob("30 9 * * *", () => {
   bot.sendMessage(-1001605704969, "마감하겠습니다.");
 });
 
-const job23 = schedule.scheduleJob("20 11 * * *", () => {
+const job23 = schedule.scheduleJob("20 23 * * *", () => {
   bot.sendMessage(-1001605704969, "일일보고 마감 10분 전 입니다");
 });
 
