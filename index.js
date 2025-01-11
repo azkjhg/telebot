@@ -468,7 +468,7 @@ const job13 = schedule.scheduleJob("20 23 * * *", () => {
 // });
 
 // const job23 = schedule.scheduleJob("20 23 * * *", () => {
-//   bot.sendMessage(-1001605704969, "일일보고 마감 10분 전 입니다");
-});
+//    bot.sendMessage(-1001605704969, "일일보고 마감 10분 전 입니다");
+// });
 
 // app.listen(1337, (req, res) => console.log("listening on 1337"));
