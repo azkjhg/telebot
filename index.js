@@ -446,16 +446,21 @@ bot.on("message", async (message) => {
     );
   }
 });
+//KST = UTC + 9시간
+// 박 기범, [2025-01-11(토) 오전 2:59]
+// 1팀일보창 채팅아이디: -1002056368988
 
-const job11 = schedule.scheduleJob("0 9 * * *", () => {
+// 박 기범, [2025-01-11(토) 오전 3:00]
+// 2팀일보창 채팅아이디: -1001605704969
+const job11 = schedule.scheduleJob("0 0 * * *", () => {
   bot.sendMessage(-1002448267848, "더 올리실 내용 있으실까요?");
 });
 
-const job12 = schedule.scheduleJob("30 9 * * *", () => {
+const job12 = schedule.scheduleJob("30 0 * * *", () => {
   bot.sendMessage(-1002448267848, "마감하겠습니다.");
 });
 
-const job13 = schedule.scheduleJob("20 23 * * *", () => {
+const job13 = schedule.scheduleJob("20 14 * * *", () => {
   bot.sendMessage(-1002448267848, "일일보고 마감 10분 전 입니다");
 });
 
