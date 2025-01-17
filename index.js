@@ -464,15 +464,15 @@ const job13 = schedule.scheduleJob("20 14 * * *", () => {
   bot.sendMessage(-1002056368988, "일일보고 마감 10분 전 입니다");
 });
 
-const job21 = schedule.scheduleJob("0 9 * * *", () => {
+const job21 = schedule.scheduleJob("0 24 * * *", () => {
   bot.sendMessage(-1001605704969, "더 올리실 내용 있으실까요?");
 });
 
-const job22 = schedule.scheduleJob("30 9 * * *", () => {
+const job22 = schedule.scheduleJob("30 24 * * *", () => {
   bot.sendMessage(-1001605704969, "마감하겠습니다.");
 });
 
-const job23 = schedule.scheduleJob("20 23 * * *", () => {
+const job23 = schedule.scheduleJob("20 14 * * *", () => {
   bot.sendMessage(-1001605704969, "일일보고 마감 10분 전 입니다");
 });
 
