@@ -453,15 +453,27 @@ bot.on("message", async (message) => {
 // 박 기범, [2025-01-11(토) 오전 3:00]
 // 2팀일보창 채팅아이디: -1001605704969
 const job11 = schedule.scheduleJob("0 24 * * *", () => {
-  bot.sendMessage(-1002448267848, "더 올리실 내용 있으실까요?");
+  bot.sendMessage(-1002056368988, "더 올리실 내용 있으실까요?");
 });
 
 const job12 = schedule.scheduleJob("30 24 * * *", () => {
-  bot.sendMessage(-1002448267848, "마감하겠습니다.");
+  bot.sendMessage(-1002056368988, "마감하겠습니다.");
 });
 
 const job13 = schedule.scheduleJob("20 14 * * *", () => {
-  bot.sendMessage(-1002448267848, "일일보고 마감 10분 전 입니다");
+  bot.sendMessage(-1002056368988, "일일보고 마감 10분 전 입니다");
+});
+
+const job21 = schedule.scheduleJob("0 9 * * *", () => {
+  bot.sendMessage(-1001605704969, "더 올리실 내용 있으실까요?");
+});
+
+const job22 = schedule.scheduleJob("30 9 * * *", () => {
+  bot.sendMessage(-1001605704969, "마감하겠습니다.");
+});
+
+const job23 = schedule.scheduleJob("20 23 * * *", () => {
+  bot.sendMessage(-1001605704969, "일일보고 마감 10분 전 입니다");
 });
 
 schedule.scheduleJob("0 0 * * *", () => {
@@ -576,39 +588,5 @@ schedule.scheduleJob("0 29 * * *", () => {
 schedule.scheduleJob("0 30 * * *", () => {
   bot.sendMessage(-1002448267848, "30");
 });
-
-schedule.scheduleJob("0 0 * * *", () => {
-  bot.sendMessage(-1002448267848, "test");
-});
-schedule.scheduleJob("0 0 * * *", () => {
-  bot.sendMessage(-1002448267848, "test");
-});
-schedule.scheduleJob("0 0 * * *", () => {
-  bot.sendMessage(-1002448267848, "test");
-});
-schedule.scheduleJob("0 0 * * *", () => {
-  bot.sendMessage(-1002448267848, "test");
-});
-schedule.scheduleJob("0 0 * * *", () => {
-  bot.sendMessage(-1002448267848, "test");
-});
-schedule.scheduleJob("0 0 * * *", () => {
-  bot.sendMessage(-1002448267848, "test");
-});
-schedule.scheduleJob("0 0 * * *", () => {
-  bot.sendMessage(-1002448267848, "test");
-});
-
-// const job21 = schedule.scheduleJob("0 9 * * *", () => {
-//   bot.sendMessage(-1001605704969, "더 올리실 내용 있으실까요?");
-// });
-
-// const job22 = schedule.scheduleJob("30 9 * * *", () => {
-//   bot.sendMessage(-1001605704969, "마감하겠습니다.");
-// });
-
-// const job23 = schedule.scheduleJob("20 23 * * *", () => {
-//    bot.sendMessage(-1001605704969, "일일보고 마감 10분 전 입니다");
-// });
 
 // app.listen(1337, (req, res) => console.log("listening on 1337"));
