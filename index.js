@@ -452,11 +452,11 @@ bot.on("message", async (message) => {
 
 // 박 기범, [2025-01-11(토) 오전 3:00]
 // 2팀일보창 채팅아이디: -1001605704969
-const job11 = schedule.scheduleJob("0 24 * * *", () => {
+const job11 = schedule.scheduleJob("0 0 * * *", () => {
   bot.sendMessage(-1002056368988, "더 올리실 내용 있으실까요?");
 });
 
-const job12 = schedule.scheduleJob("30 24 * * *", () => {
+const job12 = schedule.scheduleJob("30 0 * * *", () => {
   bot.sendMessage(-1002056368988, "마감하겠습니다.");
 });
 
@@ -464,11 +464,11 @@ const job13 = schedule.scheduleJob("20 14 * * *", () => {
   bot.sendMessage(-1002056368988, "일일보고 마감 10분 전 입니다");
 });
 
-const job21 = schedule.scheduleJob("0 24 * * *", () => {
+const job21 = schedule.scheduleJob("0 0 * * *", () => {
   bot.sendMessage(-1001605704969, "더 올리실 내용 있으실까요?");
 });
 
-const job22 = schedule.scheduleJob("30 24 * * *", () => {
+const job22 = schedule.scheduleJob("30 0 * * *", () => {
   bot.sendMessage(-1001605704969, "마감하겠습니다.");
 });
 
@@ -476,117 +476,117 @@ const job23 = schedule.scheduleJob("20 14 * * *", () => {
   bot.sendMessage(-1001605704969, "일일보고 마감 10분 전 입니다");
 });
 
-schedule.scheduleJob("0 0 * * *", () => {
-  bot.sendMessage(-1002448267848, "0");
-});
-schedule.scheduleJob("0 1 * * *", () => {
-  bot.sendMessage(-1002448267848, "1");
-});
-schedule.scheduleJob("0 2 * * *", () => {
-  bot.sendMessage(-1002448267848, "2");
-});
-schedule.scheduleJob("0 3 * * *", () => {
-  bot.sendMessage(-1002448267848, "3");
-});
-schedule.scheduleJob("0 4 * * *", () => {
-  bot.sendMessage(-1002448267848, "4");
-});
-schedule.scheduleJob("0 5 * * *", () => {
-  bot.sendMessage(-1002448267848, "5");
-});
-schedule.scheduleJob("0 6 * * *", () => {
-  bot.sendMessage(-1002448267848, "6");
-});
-schedule.scheduleJob("0 7 * * *", () => {
-  bot.sendMessage(-1002448267848, "7");
-});
-schedule.scheduleJob("0 8 * * *", () => {
-  bot.sendMessage(-1002448267848, "8");
-});
-schedule.scheduleJob("0 9 * * *", () => {
-  bot.sendMessage(-1002448267848, "9");
-});
-schedule.scheduleJob("0 10 * * *", () => {
-  bot.sendMessage(-1002448267848, "10");
-});
-schedule.scheduleJob("0 11 * * *", () => {
-  bot.sendMessage(-1002448267848, "11");
-});
+// schedule.scheduleJob("0 0 * * *", () => {
+//   bot.sendMessage(-1002448267848, "0");
+// });
+// schedule.scheduleJob("0 1 * * *", () => {
+//   bot.sendMessage(-1002448267848, "1");
+// });
+// schedule.scheduleJob("0 2 * * *", () => {
+//   bot.sendMessage(-1002448267848, "2");
+// });
+// schedule.scheduleJob("0 3 * * *", () => {
+//   bot.sendMessage(-1002448267848, "3");
+// });
+// schedule.scheduleJob("0 4 * * *", () => {
+//   bot.sendMessage(-1002448267848, "4");
+// });
+// schedule.scheduleJob("0 5 * * *", () => {
+//   bot.sendMessage(-1002448267848, "5");
+// });
+// schedule.scheduleJob("0 6 * * *", () => {
+//   bot.sendMessage(-1002448267848, "6");
+// });
+// schedule.scheduleJob("0 7 * * *", () => {
+//   bot.sendMessage(-1002448267848, "7");
+// });
+// schedule.scheduleJob("0 8 * * *", () => {
+//   bot.sendMessage(-1002448267848, "8");
+// });
+// schedule.scheduleJob("0 9 * * *", () => {
+//   bot.sendMessage(-1002448267848, "9");
+// });
+// schedule.scheduleJob("0 10 * * *", () => {
+//   bot.sendMessage(-1002448267848, "10");
+// });
+// schedule.scheduleJob("0 11 * * *", () => {
+//   bot.sendMessage(-1002448267848, "11");
+// });
 
-schedule.scheduleJob("0 12 * * *", () => {
-  bot.sendMessage(-1002448267848, "12");
-});
+// schedule.scheduleJob("0 12 * * *", () => {
+//   bot.sendMessage(-1002448267848, "12");
+// });
 
-schedule.scheduleJob("0 13 * * *", () => {
-  bot.sendMessage(-1002448267848, "13");
-});
+// schedule.scheduleJob("0 13 * * *", () => {
+//   bot.sendMessage(-1002448267848, "13");
+// });
 
-schedule.scheduleJob("0 14 * * *", () => {
-  bot.sendMessage(-1002448267848, "14");
-});
+// schedule.scheduleJob("0 14 * * *", () => {
+//   bot.sendMessage(-1002448267848, "14");
+// });
 
-schedule.scheduleJob("0 15 * * *", () => {
-  bot.sendMessage(-1002448267848, "15");
-});
+// schedule.scheduleJob("0 15 * * *", () => {
+//   bot.sendMessage(-1002448267848, "15");
+// });
 
-schedule.scheduleJob("0 16 * * *", () => {
-  bot.sendMessage(-1002448267848, "16");
-});
+// schedule.scheduleJob("0 16 * * *", () => {
+//   bot.sendMessage(-1002448267848, "16");
+// });
 
-schedule.scheduleJob("0 17 * * *", () => {
-  bot.sendMessage(-1002448267848, "17");
-});
+// schedule.scheduleJob("0 17 * * *", () => {
+//   bot.sendMessage(-1002448267848, "17");
+// });
 
-schedule.scheduleJob("0 18 * * *", () => {
-  bot.sendMessage(-1002448267848, "18");
-});
+// schedule.scheduleJob("0 18 * * *", () => {
+//   bot.sendMessage(-1002448267848, "18");
+// });
 
-schedule.scheduleJob("0 19 * * *", () => {
-  bot.sendMessage(-1002448267848, "19");
-});
+// schedule.scheduleJob("0 19 * * *", () => {
+//   bot.sendMessage(-1002448267848, "19");
+// });
 
-schedule.scheduleJob("0 20 * * *", () => {
-  bot.sendMessage(-1002448267848, "20");
-});
+// schedule.scheduleJob("0 20 * * *", () => {
+//   bot.sendMessage(-1002448267848, "20");
+// });
 
-schedule.scheduleJob("0 21 * * *", () => {
-  bot.sendMessage(-1002448267848, "21");
-});
+// schedule.scheduleJob("0 21 * * *", () => {
+//   bot.sendMessage(-1002448267848, "21");
+// });
 
-schedule.scheduleJob("0 22 * * *", () => {
-  bot.sendMessage(-1002448267848, "22");
-});
+// schedule.scheduleJob("0 22 * * *", () => {
+//   bot.sendMessage(-1002448267848, "22");
+// });
 
-schedule.scheduleJob("0 23 * * *", () => {
-  bot.sendMessage(-1002448267848, "23");
-});
+// schedule.scheduleJob("0 23 * * *", () => {
+//   bot.sendMessage(-1002448267848, "23");
+// });
 
-schedule.scheduleJob("0 24 * * *", () => {
-  bot.sendMessage(-1002448267848, "24");
-});
+// schedule.scheduleJob("0 24 * * *", () => {
+//   bot.sendMessage(-1002448267848, "24");
+// });
 
-schedule.scheduleJob("0 25 * * *", () => {
-  bot.sendMessage(-1002448267848, "25");
-});
+// schedule.scheduleJob("0 25 * * *", () => {
+//   bot.sendMessage(-1002448267848, "25");
+// });
 
-schedule.scheduleJob("0 26 * * *", () => {
-  bot.sendMessage(-1002448267848, "26");
-});
+// schedule.scheduleJob("0 26 * * *", () => {
+//   bot.sendMessage(-1002448267848, "26");
+// });
 
-schedule.scheduleJob("0 27 * * *", () => {
-  bot.sendMessage(-1002448267848, "27");
-});
+// schedule.scheduleJob("0 27 * * *", () => {
+//   bot.sendMessage(-1002448267848, "27");
+// });
 
-schedule.scheduleJob("0 28 * * *", () => {
-  bot.sendMessage(-1002448267848, "28");
-});
+// schedule.scheduleJob("0 28 * * *", () => {
+//   bot.sendMessage(-1002448267848, "28");
+// });
 
-schedule.scheduleJob("0 29 * * *", () => {
-  bot.sendMessage(-1002448267848, "29");
-});
+// schedule.scheduleJob("0 29 * * *", () => {
+//   bot.sendMessage(-1002448267848, "29");
+// });
 
-schedule.scheduleJob("0 30 * * *", () => {
-  bot.sendMessage(-1002448267848, "30");
-});
+// schedule.scheduleJob("0 30 * * *", () => {
+//   bot.sendMessage(-1002448267848, "30");
+// });
 
 // app.listen(1337, (req, res) => console.log("listening on 1337"));
