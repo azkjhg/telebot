@@ -17,7 +17,7 @@ let chat_id_error;
 let chat_thread_error;
 bot.on("message", async (message) => {
   // 왜 포트 설정을 안 하고 배포해도 작동하는지 정확히는 모르겠지만, 봇에서 메세지를 보내면, 텔레그램 서버로 전송되고, bot.on은 그 데이터를 가져와서 데이터 처리를 하는 방식 같은데, 제미니는 그게 아니라고 하는데 모르겠다..
-  // console.log("message: ", message);
+  console.log("message: ", message);
   try {
     const chat_id = message.chat.id; // 채팅방 아이디
     console.log("chat_id:", chat_id);
@@ -474,6 +474,18 @@ const job22 = schedule.scheduleJob("30 0 * * *", () => {
 
 const job23 = schedule.scheduleJob("20 14 * * *", () => {
   bot.sendMessage(-1001605704969, "일일보고 마감 10분 전 입니다");
+});
+
+const job31 = schedule.scheduleJob("0 0 * * *", () => {
+  bot.sendMessage(-1002386475208, "더 올리실 내용 있으실까요?");
+});
+
+const job32 = schedule.scheduleJob("30 0 * * *", () => {
+  bot.sendMessage(-1002386475208, "마감하겠습니다.");
+});
+
+const job33 = schedule.scheduleJob("20 14 * * *", () => {
+  bot.sendMessage(-1002386475208, "일일보고 마감 10분 전 입니다");
 });
 
 // schedule.scheduleJob("0 0 * * *", () => {
