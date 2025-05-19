@@ -68,12 +68,25 @@ bot.on("message", async (message) => {
               const lines = data.split("\n");
 
               // '만픽'이 처음 등장하는 인덱스 찾기
-              const startIdx = lines.indexOf("만픽");
+              // const startIdx = lines.indexOf("만픽");
+              const startIdx = lines.findIndex((line) =>
+                line.trimStart().startsWith("만픽")
+              );
               // '만픽' 이후 '교구찾'이 등장하는 인덱스 찾기
               const endIdx =
-                startIdx == -1 // indexOf 로 배열에 '만픽'이 없으면 -1이 뜸. 있으면 해당하는 인덱스가 나오고
-                  ? lines.indexOf("교구찾", 1)
-                  : lines.indexOf("교구찾", startIdx + 1); // '교구찾'을 찾는데, startIdx + 1 에서 검색을 시작
+                // startIdx == -1 // indexOf 로 배열에 '만픽'이 없으면 -1이 뜸. 있으면 해당하는 인덱스가 나오고
+                //   ? lines.indexOf("교구찾", 1)
+                //   : lines.indexOf("교구찾", startIdx + 1); // '교구찾'을 찾는데, startIdx + 1 에서 검색을 시작
+                startIdx == -1
+                  ? lines.findIndex(
+                      (line, index) =>
+                        index > 0 && line.trimStart().startsWith("교구찾")
+                    )
+                  : lines.findIndex(
+                      (line, index) =>
+                        index > startIdx &&
+                        line.trimStart().startsWith("교구찾")
+                    );
 
               const DateRegex = /\d+/g;
               const DateSlicedLines =
@@ -81,7 +94,7 @@ bot.on("message", async (message) => {
                   ? lines.slice(0, endIdx)
                   : lines.slice(0, startIdx); //두번째 인자는 포함하지 않고 자름
               const DateResult = [];
-
+              console.log("ststartIdxart, endIdx", startIdx, endIdx);
               //날짜 정규식 코드
               DateSlicedLines.forEach((line) => {
                 const matches = line.match(DateRegex);
@@ -108,7 +121,7 @@ bot.on("message", async (message) => {
                 endIdx == -1
                   ? lines.slice(startIdx + 1)
                   : lines.slice(startIdx + 1, endIdx);
-
+              console.log("ExistStartIdx", ExistStartIdx);
               const DateFixedSlicedLines = startIdx == -1 ? [] : ExistStartIdx;
 
               const DateFixedResult = [];
@@ -125,6 +138,7 @@ bot.on("message", async (message) => {
               // 신규(만픽) 등록하는 코드
               console.log("함수 내부 nextRow:", nextRow);
               let CurrentRow = nextRow;
+              console.log("DateFixedSlicedLines", DateFixedSlicedLines);
               DateFixedSlicedLines.forEach((line) => {
                 console.log("line", line);
                 const matches = line.match(DateFixRegex);
@@ -150,6 +164,7 @@ bot.on("message", async (message) => {
                     }`, // 맨 위에 있는 날짜 ex) 11/17 의 월,일을 삽입함 + 현재 년도 함수
                     //TeacherDate, // 교구찾 날짜, 일단 이건 적용 제외해야겠음.
                   ];
+                  console.log("Ary", Ary);
                   DateFixedResult.push(Ary);
                   CurrentRow++;
                 }
